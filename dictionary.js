@@ -13,41 +13,40 @@ let words3 = {
     'door': 'дверь',
     'wall': 'стена'
 };
-let word;
 function start() {
-    let themes1 = [arg1, arg2, arg3];
+    let word;
+    let choose1;
+    let choose2;
+    let themes1 = [words1, words2, words3];
     let rand = Math.floor(Math.random() * themes1.length);
     let n = prompt("Введите количетсво повторов");
     let lang = prompt("Если вы хотите с рус. на англ. , то введите ruEn. Если хотите с англ. на рус. , то введите enRu.")
     let ball = 0; // счетчик правильных ответов
     let errors = 0; // счетчик ошибок
     let translate; // переменная для хранения того, что ввел пользователь
-    label: // метка блока (цикла while)
     if (lang == "enRu") {
-        for (let i = 0; i < n;) {
-            n--; // бесконечный цикл while
-            for (word in themes1[rand]) { // проходим в цикле ассоциативный массив words, каждое английское слово попадает в переменную word
-                alert("Слово: " + word);
-                translate = prompt("Введите перевод, для завершения -'!'"); // пользователь вводит перевод
-                if (translate == "!") break label; // если пользователь ввел восклицательный знак, выходим из всех циклов
-                if (translate == themes1[rand][word]) { // если перевод был введен правильно, выводим сообщение и увеличиваем на 1 счетчик правильных ответов
-                    alert("Правильно!");
-                    ball++;
-                } else { // если перевод был введен неправильно, выводим сообщение и увеличиваем на 1 счетчик неправильных ответов
-                    alert("Неправильно!");
-                    errors++;
-                }
-            }
+        for (word in themes1[rand]) {
+            choose1 = word;
+            choose2 = themes1[rand][word];
         }
+        show()
     }
-    else if (lang == "ruEn") {
+    if (lang == "ruEn") {
+        for (word in themes1[rand]) {
+            choose1 = themes1[rand][word];
+            choose2 = word;
+        }
+        show()
+    }
+    function show() {
+        label: // метка блока (цикла while)
         for (let i = 0; i < n;) {
             n--; // бесконечный цикл while
             for (word in themes1[rand]) { // проходим в цикле ассоциативный массив words, каждое английское слово попадает в переменную word
-                alert("Слово: " + themes1[rand][word]);
+                alert("Слово: " + choose1);
                 translate = prompt("Введите перевод, для завершения -'!'"); // пользователь вводит перевод
                 if (translate == "!") break label; // если пользователь ввел восклицательный знак, выходим из всех циклов
-                if (translate == word) { // если перевод был введен правильно, выводим сообщение и увеличиваем на 1 счетчик правильных ответов
+                if (translate == choose2) { // если перевод был введен правильно, выводим сообщение и увеличиваем на 1 счетчик правильных ответов
                     alert("Правильно!");
                     ball++;
                 } else { // если перевод был введен неправильно, выводим сообщение и увеличиваем на 1 счетчик неправильных ответов
