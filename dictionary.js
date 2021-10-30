@@ -13,11 +13,12 @@ let words3 = {
     'door': 'дверь',
     'wall': 'стена'
 };
-function start() {
+
+function start(...themes1) {
     let word;
     let choose1;
     let choose2;
-    let themes1 = [words1, words2, words3];
+    // let themes1 = [words1, words2, words3];
     let rand = Math.floor(Math.random() * themes1.length);
     let n = prompt("Введите количетсво повторов");
     let lang = prompt("Если вы хотите с рус. на англ. , то введите ruEn. Если хотите с англ. на рус. , то введите enRu.")
@@ -60,7 +61,9 @@ function start() {
     for (word in themes1[rand]) {
         document.write(themes1[rand][word] + ': ' + word + '<br>'); // выводим в цикле все слова словаря
     }
+    return;
 }
+let a = start(words1, words2, words3)
 
 function dictionary() {
     let lang = prompt("Если вы хотите с рус. на англ. , то введите ruEn. Если хотите с англ. на рус. , то введите enRu.");
