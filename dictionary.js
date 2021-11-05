@@ -21,29 +21,23 @@ function start(themes) {
     // let themes1 = [words1, words2, words3];
     // let rand = Math.floor(Math.random() * themes1.length);
     let n = prompt("Введите количетсво повторов");
-    let lang = prompt("Если вы хотите с рус. на англ. , то введите ruEn. Если хотите с англ. на рус. , то введите enRu.")
+    let lang = prompt("Если вы хотите с рус. на англ. , то введите ruEn. Если хотите с англ. на рус. , то введите enRu.");
     let ball = 0; // счетчик правильных ответов
     let errors = 0; // счетчик ошибок
     let translate; // переменная для хранения того, что ввел пользователь
-    if (lang == "enRu") {
-        for (word in themes) {
-            choose1 = word;
-            choose2 = themes[word];
-        }
-        show()
-    }
-    if (lang == "ruEn") {
-        for (word in themes) {
-            choose1 = themes[word];
-            choose2 = word;
-        }
-        show()
-    }
     function show() {
-        label: // метка блока (цикла while)
+        label:
         for (let i = 0; i < n;) {
-            n--; // бесконечный цикл while
+            n--;
             for (word in themes) { // проходим в цикле ассоциативный массив words, каждое английское слово попадает в переменную word
+                if (lang == "enRu") {
+                    choose1 = word;
+                    choose2 = themes[word];
+                }
+                if (lang == "ruEn") {
+                    choose1 = themes[word];
+                    choose2 = word;
+                }
                 alert("Слово: " + choose1);
                 translate = prompt("Введите перевод, для завершения -'!'"); // пользователь вводит перевод
                 if (translate == "!") break label; // если пользователь ввел восклицательный знак, выходим из всех циклов
@@ -57,15 +51,16 @@ function start(themes) {
             }
         }
     }
+    show();
     alert("Правильно: " + ball + ", неправильно: " + errors); // выводим сообщение и значения счетчиков правильных и неправильных ответов
     for (word in themes) {
         document.write(themes[word] + ': ' + word + '<br>'); // выводим в цикле все слова словаря
     }
-    return;
 }
+
 let themes1 = [words1, words2, words3];
 let rand1 = Math.floor(Math.random() * themes1.length);
-let a = start(themes1[rand1])
+let a = start(themes1[rand1]);
 
 function dictionary() {
     let lang = prompt("Если вы хотите с рус. на англ. , то введите ruEn. Если хотите с англ. на рус. , то введите enRu.");
